@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka</title>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">-->
+</head>
+<body>
+
+</table>
+<form action="/dodawanie" method="post" th:object="${ksiazka}">
+
+    <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
+    <input type="text" placeholder="ISBN" th:field="*{isbn}"/> <br/>
+    <input type="text" placeholder="Opis" th:field="*{description}"/> <br/>
+    <input type="date" placeholder="Data wydania" th:field="*{releaseDate}"/><br/>
+
+    <select th:field="*{bookCategory}">
+        <option
+                th:each="category: ${T(pl.homework.library.model.BookCategory).values()}"
+                th:text="${category}"
+                th:value="${category}"></option>
+    </select>
+
+    <input type="submit" value="Dodaj" />
+
+</form>
+</body>
+</html>

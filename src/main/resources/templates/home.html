@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+</head>
+<body>
+<a href="/dodawanie">Dodaj książkę</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id książki</th>
+        <th>Tytuł książki</th>
+        <th>ISBN</th>
+    </tr>
+    <tr th:each="book: ${ksiazki}">
+        <td th:text="${book.id}"></td>
+        <td>
+            <a th:href="'/ksiazka/' + ${book.id}" th:text="${book.title}">Tutaj tresc linku</a></td>
+        <td th:text="${book.isbn}"></td>
+
+    </tr>
+    </thead>
+</table>
+
+</body>
+</html>

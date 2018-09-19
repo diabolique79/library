@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id książki</th>
+        <th>Tytuł książki</th>
+        <th>ISBN</th>
+        <th>Opis książki</th>
+        <th>Data wydania książki</th>
+        <th>Kategoria</th>
+    </tr>
+    <tr>
+        <td th:text="${ksiazka.id}"></td>
+        <td th:text="${ksiazka.title}"></td>
+        <td th:text="${ksiazka.isbn}"></td>
+        <td th:text="${ksiazka.description}"></td>
+        <td th:text="${ksiazka.releaseDate}"></td>
+        <td th:text="${ksiazka.bookCategory}"></td>
+    </tr>
+    </thead>
+</table>
+
+<a href="/dodawanie">Edytuj książkę</a>
+<a href="/usuwanie">Usuń książkę</a>
+
+</body>
+</html>
