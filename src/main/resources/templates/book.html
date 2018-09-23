@@ -44,8 +44,8 @@
     </thead>
 </table>
 
-<a href="/dodawanie">Edytuj książkę</a>
-<a href="/usuwanie">Usuń książkę</a>
+<a th:href="/edytowanie">Edytuj książkę</a>
+<a th:href="'/usuwanie?id='+ ${ksiazka.id}">Usuń książkę</a>
 
 </body>
 </html>

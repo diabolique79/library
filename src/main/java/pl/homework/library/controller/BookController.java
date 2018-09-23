@@ -2,14 +2,12 @@ package pl.homework.library.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.homework.library.model.Book;
 import pl.homework.library.repository.BookRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BookController {
@@ -23,15 +21,16 @@ public class BookController {
 
 
     @GetMapping("/")
-    public String homePage(Model model){
+    public String homePage(Model model) {
         List<Book> books = (List<Book>) bookRepository.findAll();
         model.addAttribute("ksiazki", books);
         return "home";
     }
+
     @GetMapping("/ksiazka/{id}")
-    public String bookDetails(@PathVariable Long id, Model model){
-        Book book = (Book) bookRepository.findAllBy(id);
-        model.addAttribute("ksiazka", book);
+    public String bookDetails(@PathVariable Long id, Model model) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        model.addAttribute("ksiazka", optionalBook.get());
         return "book";
     }
 
@@ -48,8 +47,22 @@ public class BookController {
     }
 
     @GetMapping("/usuwanie")
-    public String deleteBook(Book book){
-        bookRepository.delete(book);
+    public String deleteBook(@RequestParam Long id) {
+        bookRepository.deleteById(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/edytowanie")
+    public String updateBookForm(@RequestParam Long id, Model model) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        model.addAttribute("ksiazka", optionalBook.get());
+        return "edytowanie";
+    }
+
+
+    @PostMapping("/edytowanie")
+    public String updateBookPost(@RequestParam Long id) {
+        bookRepository.findById(id);
+        return "bo";
     }
 }
